@@ -1,5 +1,6 @@
 module.exports = {
-  root: true,
+  // root: true,
+  root: '',
   env: {
     node: true
   },
@@ -8,7 +9,8 @@ module.exports = {
     '@vue/standard'
   ],
   parserOptions: {
-    parser: '@babel/eslint-parser'
+    parser: '@babel/eslint-parser',
+    requireConfigFile: true
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
