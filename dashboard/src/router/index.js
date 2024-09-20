@@ -1,41 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-const Home = () => import('../views/Home/indexView.vue')
-const Feedbacks = () => import('../views/Feedbacks/indexView.vue')
-const Credentials = () => import('../views/Credentials/indexView.vue')
+import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: HomeView
   },
   {
-    path: '/feedbacks',
-    name: 'Feedbacks',
-    component: Feedbacks,
-    meta: {
-      hasAuth: true
-    }
-  },
-  {
-    path: '/credentials',
-    name: 'Credentials',
-    component: Credentials,
-    meta: {
-      hasAuth: true
-    }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: {
-      name: 'Home'
-    }
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
